@@ -70,3 +70,11 @@ The system uses a hybrid approach:
 *   **"Model not found"**: Ensure you have run `python train_model.py` at least once.
 *   **"Domain Age: Unknown"**: This means the Whois server blocked the request. The model treats this as neutral/cautionary.
 
+<img width="1919" height="849" alt="Screenshot 2026-01-29 175712" src="https://github.com/user-attachments/assets/dd6369f9-cb92-418e-8560-5a199fd5fce4" />
+
+<img width="1900" height="855" alt="Screenshot 2026-01-29 175726" src="https://github.com/user-attachments/assets/24cb373f-b3bd-43b9-96f5-814935eab604" />
+
+<img width="1918" height="853" alt="Screenshot 2026-01-29 175815" src="https://github.com/user-attachments/assets/998f1c2c-3a92-4c49-a8b9-6ce0a5d7d588" />
+
+<img width="1908" height="854" alt="Screenshot 2026-01-29 175806" src="https://github.com/user-attachments/assets/c6105af0-3f2c-4046-af90-2582c713e6a3" />
+
