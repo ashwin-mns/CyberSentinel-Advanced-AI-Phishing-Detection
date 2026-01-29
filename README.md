@@ -1,8 +1,16 @@
 # 🛡️ CyberSentinel: Advanced AI Phishing Detection
 
-A state-of-the-art phishing detection system powered by Machine Learning and heuristic forensic analysis. This tool utilizes a **Random Forest Classifier** trained on 12 distinct security features to identify malicious websites in real-time.
+A state-of-the-art phishing detection system powered by **Auto-Selected Machine Learning** and heuristic forensic analysis. This tool trains and evaluates multiple algorithms (**Random Forest, Decision Tree, KNN, and Ensemble**) to automatically select the most accurate model for real-time threat detection.
 
 ## 🚀 Features
+
+### 🧠 Intelligent Model Selection
+*   **Multi-Model Training**: Automatically trains 4 different models:
+    *   **Random Forest** (Ensemble of decision trees)
+    *   **Decision Tree** (Interpretable rules)
+    *   **K-Nearest Neighbors (KNN)** (Distance-based classification)
+    *   **Voting Ensemble** (Combines the power of all three)
+*   **Auto-Tuning**: Evaluates each model on a test set and automatically saves the highest-performing one for production use.
 
 ### 🔍 Basic Analysis
 *   **URL Length**: Detects suspiciously long URLs used to hide domains.
@@ -35,6 +43,7 @@ A state-of-the-art phishing detection system powered by Machine Learning and heu
     ```
 
 3.  **Train the AI Model** (Required for first run):
+    This command will train all 4 models, compare their accuracy, and save the winner to `phishing_model.pkl`.
     ```bash
     python train_model.py
     ```
@@ -43,16 +52,21 @@ A state-of-the-art phishing detection system powered by Machine Learning and heu
 
 Run the web interface:
 ```bash
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
 Enter any URL to see a real-time **Forensic DNA** breakdown of the site's security posture.
 
 ## 🧪 Logic & Scoring
-The system uses a weighted probability model.
-*   **Green (Safe)**: High confidence, valid SSL, trusted domain age.
-*   **Red (Malicious)**: Presence of critical flags (IP, Redirects, TLD injection) or new domains.
-*   **Grey (Unknown)**: Whois lookup failed; requires manual caution.
+The system uses a hybrid approach:
+*   **ML Prediction**: The selected best model predicts the probability of phishing based on 12 feature vectors.
+*   **Forensic Safety Checks**: Even if the ML predicts "Safe", the system will flag "Malicious" if critical heuristics (like IP usage or Double Slash) are detected.
+*   **Visual Feedback**:
+    *   **Green (Safe)**: High confidence, valid SSL, trusted domain age.
+    *   **Red (Malicious)**: Probable phishing or presence of critical forensic flags.
+    *   **Grey (Unknown)**: Whois lookup failed; requires manual caution.
 
 ## 🔧 Troubleshooting
-*   **"Domain Age: Unknown"**: This means the Whois server blocked the request. The model treats this as neutral/cautionary rather than immediately malicious.
+*   **"Model not found"**: Ensure you have run `python train_model.py` at least once.
+*   **"Domain Age: Unknown"**: This means the Whois server blocked the request. The model treats this as neutral/cautionary.
+
